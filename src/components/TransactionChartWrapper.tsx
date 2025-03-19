@@ -2,6 +2,17 @@ import { FC, useState } from "react";
 import TransactionChart from "./TransactionChart";
 import { ChartInterval } from "../utils/getBinanceData";
 
+const ButtonTrigger: FC<{
+  chartInterval: ChartInterval;
+  intervalToSet: ChartInterval;
+  text: string;
+  onClick: () => void;
+}> = ({ intervalToSet, onClick, text, chartInterval }) => (
+  <button onClick={onClick} className={intervalToSet === chartInterval ? "bg-gray-600" : "bg-gray-900"}>
+    {text}
+  </button>
+);
+
 const TransactionChartWrapper: FC = () => {
   const [chartInterval, setChartInterval] = useState<ChartInterval>("1m");
 
@@ -10,30 +21,30 @@ const TransactionChartWrapper: FC = () => {
       <div>
         <h3 className='text-2xl text-center mb-4'>Select interval</h3>
         <div className='flex gap-4 mb-4'>
-          <button
+          <ButtonTrigger
+            intervalToSet='1s'
             onClick={() => setChartInterval("1s")}
-            className={chartInterval === "1s" ? "bg-gray-600" : "bg-gray-900"}
-          >
-            1s
-          </button>
-          <button
+            chartInterval={chartInterval}
+            text='1s'
+          />
+          <ButtonTrigger
+            intervalToSet='1m'
             onClick={() => setChartInterval("1m")}
-            className={chartInterval === "1m" ? "bg-gray-600" : "bg-gray-900"}
-          >
-            1m
-          </button>
-          <button
+            chartInterval={chartInterval}
+            text='1m'
+          />
+          <ButtonTrigger
+            intervalToSet='1h'
             onClick={() => setChartInterval("1h")}
-            className={chartInterval === "1h" ? "bg-gray-600" : "bg-gray-900"}
-          >
-            1h
-          </button>
-          <button
+            chartInterval={chartInterval}
+            text='1h'
+          />
+          <ButtonTrigger
+            intervalToSet='1x'
             onClick={() => setChartInterval("1x")}
-            className={chartInterval === "1x" ? "bg-gray-600" : "bg-gray-900"}
-          >
-            trigger error
-          </button>
+            chartInterval={chartInterval}
+            text='trigger error'
+          />
         </div>
       </div>
       <TransactionChart chartInterval={chartInterval} />
