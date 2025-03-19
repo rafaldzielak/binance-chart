@@ -28,6 +28,12 @@ const TransactionChartWrapper: FC = () => {
           >
             1h
           </button>
+          <button
+            onClick={() => setChartInterval("1x")}
+            className={chartInterval === "1x" ? "bg-gray-600" : "bg-gray-900"}
+          >
+            trigger error
+          </button>
         </div>
       </div>
       <TransactionChart chartInterval={chartInterval} />

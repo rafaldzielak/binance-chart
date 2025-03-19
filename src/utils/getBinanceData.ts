@@ -1,6 +1,6 @@
 import { bincanceDataToObject, DataFromBinance } from "./binanceDataConverter";
 
-export type ChartInterval = "1s" | "1m" | "1h";
+export type ChartInterval = "1s" | "1m" | "1h" | "1x";
 
 export const getBinanceData = async (chartInterval: ChartInterval = "1m") => {
   const res = await fetch(
