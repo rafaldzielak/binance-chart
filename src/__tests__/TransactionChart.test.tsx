@@ -15,7 +15,7 @@ vi.mock("@tanstack/react-query", async (importOriginal) => {
 
 describe("TransactionChart", () => {
   test("renders the chart correctly", () => {
-    const { container } = render(<TransactionChart />);
+    const { container } = render(<TransactionChart chartInterval='1m' />);
     expect(container.querySelector(".echarts-for-react")).toBeTruthy();
   });
 });
