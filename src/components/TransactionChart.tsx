@@ -37,7 +37,7 @@ const TransactionChart: FC<TransactionChartProps> = ({ chartInterval }) => {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
         xAxis: {
           type: "category",
-          data: data?.map((unit) => dayjs(unit.klineOpenTime).format("DD-MM HH:MM:ss")),
+          data: data?.map((unit) => dayjs(unit.klineOpenTime).format("DD-MM-YY HH:mm:ss")),
         },
         yAxis: {
           type: "value",
