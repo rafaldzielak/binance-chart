@@ -12,19 +12,19 @@ const TransactionChartWrapper: FC = () => {
         <div className='flex gap-4 mb-4'>
           <button
             onClick={() => setChartInterval("1s")}
-            className={`bg-gray-${chartInterval === "1s" ? "400" : "950"}`}
+            className={chartInterval === "1s" ? "bg-gray-600" : "bg-gray-900"}
           >
             1s
           </button>
           <button
             onClick={() => setChartInterval("1m")}
-            className={`bg-gray-${chartInterval === "1m" ? "400" : "950"}`}
+            className={chartInterval === "1m" ? "bg-gray-600" : "bg-gray-900"}
           >
             1m
           </button>
           <button
             onClick={() => setChartInterval("1h")}
-            className={`bg-gray-${chartInterval === "1h" ? "400" : "950"}`}
+            className={chartInterval === "1h" ? "bg-gray-600" : "bg-gray-900"}
           >
             1h
           </button>
