@@ -38,12 +38,12 @@ const TransactionChart: FC = () => {
           },
           yAxis: {
             type: "value",
+            scale: true,
           },
           series: [
             {
               data: data?.map((unit) => unit.closePrice),
               type: "line",
-              smooth: true,
             },
           ],
           tooltip: {
