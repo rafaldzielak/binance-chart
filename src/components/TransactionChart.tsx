@@ -19,39 +19,37 @@ const TransactionChart: FC = () => {
   }, [error]);
 
   return (
-    <div>
-      <ReactECharts
-        showLoading={isLoading}
-        style={{ width: "500px", height: "500px" }}
-        option={{
-          title: {
-            text: "ETH/BTC price",
-            padding: [15, 150],
-            textStyle: {
-              color: "white",
-            },
+    <ReactECharts
+      showLoading={isLoading}
+      style={{ width: "500px", height: "500px" }}
+      option={{
+        title: {
+          text: "ETH/BTC price",
+          padding: [15, 150],
+          textStyle: {
+            color: "white",
           },
-          grid: { top: 8, right: 8, bottom: 24, left: 36 },
-          xAxis: {
-            type: "category",
-            data: data?.map((unit) => dayjs(unit.klineOpenTime).format("DD-MM HH:MM:ss")),
+        },
+        grid: { top: 8, right: 8, bottom: 24, left: 36 },
+        xAxis: {
+          type: "category",
+          data: data?.map((unit) => dayjs(unit.klineOpenTime).format("DD-MM HH:MM:ss")),
+        },
+        yAxis: {
+          type: "value",
+          scale: true,
+        },
+        series: [
+          {
+            data: data?.map((unit) => unit.closePrice),
+            type: "line",
           },
-          yAxis: {
-            type: "value",
-            scale: true,
-          },
-          series: [
-            {
-              data: data?.map((unit) => unit.closePrice),
-              type: "line",
-            },
-          ],
-          tooltip: {
-            trigger: "axis",
-          },
-        }}
-      />
-    </div>
+        ],
+        tooltip: {
+          trigger: "axis",
+        },
+      }}
+    />
   );
 };
 
