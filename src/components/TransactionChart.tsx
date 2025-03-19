@@ -4,12 +4,16 @@ import dayjs from "dayjs";
 import ReactECharts from "echarts-for-react";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
-import { getBinanceData } from "../utils/getBinanceData";
+import { ChartInterval, getBinanceData } from "../utils/getBinanceData";
 
-const TransactionChart: FC = () => {
+type TransactionChartProps = {
+  chartInterval: ChartInterval;
+};
+
+const TransactionChart: FC<TransactionChartProps> = ({ chartInterval }) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["binanceData"],
-    queryFn: getBinanceData,
+    queryKey: ["binanceData", chartInterval],
+    queryFn: () => getBinanceData(chartInterval),
     refetchInterval: 20000,
     retry: 0,
   });
@@ -21,11 +25,11 @@ const TransactionChart: FC = () => {
   return (
     <ReactECharts
       showLoading={isLoading}
-      style={{ width: "500px", height: "500px" }}
+      style={{ width: "800px", height: "500px" }}
       option={{
         title: {
           text: "ETH/BTC price",
-          padding: [15, 150],
+          padding: [15, 325],
           textStyle: {
             color: "white",
           },

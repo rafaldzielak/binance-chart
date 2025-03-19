@@ -1,13 +1,13 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import TransactionChart from "./components/TransactionChart";
 import { Toaster } from "react-hot-toast";
+import TransactionChartWrapper from "./components/TransactionChartWrapper";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TransactionChart />
+      <TransactionChartWrapper />
       <Toaster />
     </QueryClientProvider>
   );
