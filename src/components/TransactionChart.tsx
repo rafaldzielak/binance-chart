@@ -2,24 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 
 import dayjs from "dayjs";
 import ReactECharts from "echarts-for-react";
-import { FC } from "react";
-import { bincanceDataToObject, DataFromBinance } from "../utils/binanceDataConverter";
-
-const getBinanceData = async () => {
-  const res = await fetch("http://127.0.0.1:8080/https://binance.com/api/v3/klines?symbol=ETHBTC&interval=1s");
-  const data: DataFromBinance[] = await res.json();
-  const convertedData = bincanceDataToObject(data);
-  return convertedData;
-};
+import { FC, useEffect } from "react";
+import toast from "react-hot-toast";
+import { getBinanceData } from "../utils/getBinanceData";
 
 const TransactionChart: FC = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["binanceData"],
     queryFn: getBinanceData,
     refetchInterval: 20000,
+    retry: 0,
   });
 
-  console.log({ error });
+  useEffect(() => {
+    if (error) toast.error("Failed to fetch data");
+  }, [error]);
 
   return (
     <div>
