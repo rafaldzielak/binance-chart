@@ -1,3 +1,5 @@
+import { ChartInterval } from "./getBinanceData";
+
 export type DataFromBinance = [
   number,
   string,
@@ -29,4 +31,17 @@ export const bincanceDataToObject = (data: DataFromBinance[]) => {
   });
 
   return convertedData;
+};
+
+export const getRefetchInterval = (chartInterval: ChartInterval) => {
+  switch (chartInterval) {
+    case "1s":
+      return 2 * 1000;
+    case "1m":
+      return 60 * 1000;
+    case "1h":
+      return 60 * 5 * 1000;
+    default:
+      return 60 * 1000;
+  }
 };

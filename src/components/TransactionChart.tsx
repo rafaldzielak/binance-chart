@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-
 import dayjs from "dayjs";
 import ReactECharts from "echarts-for-react";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
+import { getRefetchInterval } from "../utils/binanceDataConverter";
 import { ChartInterval, getBinanceData } from "../utils/getBinanceData";
 
 type TransactionChartProps = {
@@ -14,7 +14,7 @@ const TransactionChart: FC<TransactionChartProps> = ({ chartInterval }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["binanceData", chartInterval],
     queryFn: () => getBinanceData(chartInterval),
-    refetchInterval: 20000,
+    refetchInterval: getRefetchInterval(chartInterval),
     retry: 0,
   });
 
